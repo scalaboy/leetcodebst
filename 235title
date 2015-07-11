@@ -1,0 +1,12 @@
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+   if(root==NULL||p==NULL||q==NULL)
+    return NULL;
+    else if((p->val<root->val&&q->val>root->val)||(p->val>root->val&&q->val<root->val))
+    return root;
+    else if((p->val<root->val&&q->val==root->val)||(p->val==root->val&&q->val>root->val)||(p->val==root->val&&q->val<root->val)||(p->val>root->val&&q->val==root->val))
+    return root;
+    else if(p->val<root->val&&q->val<root->val)
+    lowestCommonAncestor(root->left,p,q);
+    else if(p->val>root->val&&q->val>root->val)
+    lowestCommonAncestor(root->right,p,q);  
+}
